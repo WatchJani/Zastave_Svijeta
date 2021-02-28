@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kvz | Zastave</title>
+    <link rel="shortcut icon" href="svijet.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            height: 50px;
+        }
+
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 0px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            width: 100%;
+        }
+
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+        .granica {
+            padding: 0 30px;
+        }
+
+
+        #slika {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+
+        #pogled_jedna {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        #vrijemee,
+        #rezultat {
+            position: absolute;
+            font-weight: bold;
+            top: 10px;
+        }
+
+
+        #rezultat {
+            left: 10px;
+        }
+
+
+        #vrijemee {
+            right: 10px;
+        }
+
+
+        .pogled_dva {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+    </style>
+</head>
+
+<body onload="upozorenje()">
+
+    <div id="pogled_jedna">
+        <p id="rezultat">0/195</p>
+        <p id="vrijemee">18:00</p>
+        <div class="sredina">
+            <p id="slika"><img src="./zastave/Afghanistan.gif" alt=""></p>
+            <div class="granica">
+                <input type="text" name="" id="unos">
+
+                <button onclick="fja()" class="button button1">dalje</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="pogled_dva">
+        <p id="konacni_rezultat"></p>
+    </div>
+
+    <!-- JavaScript dio -->
+    <script>
+        const upozorenje=()=>{
+            alert("Kako bi vaš odgovor bio priznat, početno slovo države potrebno pisati velim slovom i na engleskom jeziku! Da bi rješilI ovaj kviz potrebno je pogoditi sve zastave država ili pustiti vrijeme da Vam istekne. Vrijeme počinje odbojavati čim zatvorite ovaj prozor. Srećno! 😃")
+        }
+        var niz = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "CAR", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "DPRK", "DRC", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St. Vincent Grenadines", "State of Palestine", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "U.A.E.", "U.K.", "U.S.", "Uganda", "Ukraine", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]
+        var i = 0, brojac = 0
+        console.log(niz.length)
+        //sta se desava kada kliknem enter
+        unos.addEventListener("keydown", function (event) {
+            if (event.keyCode === 13) {
+                if (event.target.value == niz[i]) {
+                    brojac++
+                    var index = niz.indexOf(niz[i])
+                    niz.splice(index, 1)
+                    i = niz.length - 1
+                    document.getElementById("slika").innerHTML = `<img src="./zastave/${niz[i]}.gif" alt="">`
+                    document.getElementById("rezultat").innerHTML = `${brojac}/195`
+                    console.log(niz)
+                    if (niz[i] == null) {
+                        rezultat()
+                    }
+                    document.getElementById("unos").value = ""
+                }
+                else {
+                    console.log("greska")
+                    document.getElementById("unos").value = ""
+                }
+            }
+        })
+
+        //Sta se desava kada kliknem dugme dalje
+        function fja() {
+            if (i != niz.length - 1) {
+                console.log(niz.length)
+                i++
+                document.getElementById("slika").innerHTML = `<img src="./zastave/${niz[i]}.gif" alt="">`
+            }
+            else {
+                i = 0
+                document.getElementById("slika").innerHTML = `<img src="./zastave/${niz[i]}.gif" alt="">`
+            }
+        }
+
+        //tajmer 
+        const pocetno_vrijeme = 18 //ovje mozete mjenjati vrijeme tajmera
+        let vrijeme = pocetno_vrijeme * 60
+
+        setInterval("vrijemee()", 1000)
+        function vrijemee() {
+            const minut = Math.floor(vrijeme / 60)
+            let sekunde = vrijeme % 60
+
+            if (sekunde < 10) {
+                sekunde = `0${sekunde}`
+            }
+
+            document.getElementById("vrijemee").innerHTML = `${minut}:${sekunde}`
+
+            if (minut == 5 && sekunde == "00") {
+                document.getElementById("vrijemee").style.color = "orange"
+            }
+
+            if (minut == 0) {
+                document.getElementById("vrijemee").style.color = "red"
+            }
+
+            if (minut != -1 && sekunde != "-01")
+                vrijeme--
+            if (minut == 0 && sekunde == 0)
+                rezultat()
+        }
+        //sta se desava kada mi istekne vrijeme ili ako se sve drzave pogode
+        const rezultat = () => {
+            document.getElementById("pogled_jedna").style.display = "none"
+            document.getElementById("konacni_rezultat").innerHTML = `Vaš rezultat: ${((brojac * 100) / 195).toFixed(2)}%`
+        }
+    </script>
+</body>
+
+</html>
